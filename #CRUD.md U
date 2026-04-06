@@ -1,0 +1,56 @@
+#Crud ops
+    create read Update Delete
+    Read -> Query
+
+# Mongo Db
+...
+    Building Block: document
+    !JSON document(BSON)
+
+    RDBMS     mongodb
+    Database   Database    !Container for Data
+    Table      Collections
+    Rows        documents
+    Referencial  Referencial and Embedded
+        model
+...
+
+order
+    user details + billing  addres + billing details
+    + products selected in cart 
+    == order info + line items
+    =={id, user_id, bill amount, adress, pay_mode, status}+
+      [{id, product_id, order_id, qty, price, amount}]
+    == Referencial Modelling
+        order:
+              id, user_id, bill amount, adress, pay_mode, status
+               1,   10,       2000,       xyz,    gpay,   pending
+        order_items: id, product_id, order_id, qty, price, amount
+                     1,    1001,       1,       1,  16000, 16000
+                     2,    4002,       1,       2,  2000,  2000
+        ...
+
+    order_items:
+    [
+        {id:1, product_id:1001, order_id:1, qty:1, price:16000, amount:16000},
+        {id:2, produvt_id:3002, order_id:1, qty:2, price:2000, amount:2000}
+        ....
+    ]
+    Embedded modelling:
+        orders
+            [
+                {id:1, user_id:10, bill amount:18000, adress:xyz, pay_mode:gpay, status:pending,
+                items: [
+                    {id:1, product_id:1001,qty:1, price:1600, amount:16000},
+                    {{id:2, product_id:4002,qty:2, price:1000, amount:2000}}
+                ]},
+                ...
+            ]
+
+
+project ideas given by sir:
+ 1. Product management
+ 2. patient management
+        patients{id, name, gender, age, photo}
+        admins
+ 3. cab management
